@@ -1,5 +1,6 @@
 <script>
 import { computed, reactive, ref } from "vue";
+import { useToast } from "vue-toastification";
 
 export default {
   name: "UserDashboard",
@@ -48,6 +49,7 @@ export default {
     ]);
     const editMode = ref(false);
     const searchMode = ref(false);
+    const toast = useToast();
 
     function resetForm() {
       form.value = {
@@ -63,12 +65,14 @@ export default {
     function addUser() {
       form.value.id = Math.floor(1000 + Math.random() * 9000).toString();
       data.unshift(form.value);
+      toast.success("User added successfully.");
       resetForm();
     }
 
     function editUser() {
       deleteUser(form.value.id);
       data.unshift(form.value);
+      toast.success("User edited successfully.");
       resetForm();
       editMode.value = false;
     }
@@ -79,6 +83,8 @@ export default {
           data.splice(index, 1);
         }
       });
+
+      if (!editMode.value) toast.error("User deleted successfully.");
     }
 
     function onSubmit() {
