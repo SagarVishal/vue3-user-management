@@ -152,7 +152,7 @@ export default {
 <template>
   <nav class="navbar bg-light">
     <div class="container-fluid justify-content-center">
-      <h3>User Management</h3>
+      <h3>User Management Deployed on Netlify</h3>
     </div>
   </nav>
   <div class="container w-50 bg-light mt-3">
